@@ -3,6 +3,7 @@ import pandas
 import scipy
 import numpy as np
 import sys
+import sklearn
 from sklearn import linear_model
 
 TRAIN_DATA_URL = "https://storage.googleapis.com/kubric-hiring/linreg_train.csv"
