@@ -1,9 +1,9 @@
 import requests
 import pandas
 import scipy
-import numpy
+import numpy as np
 import sys
-
+from sklearn import linear_model
 
 TRAIN_DATA_URL = "https://storage.googleapis.com/kubric-hiring/linreg_train.csv"
 TEST_DATA_URL = "https://storage.googleapis.com/kubric-hiring/linreg_test.csv"
@@ -17,7 +17,13 @@ def predict_price(area) -> float:
     """
     response = requests.get(TRAIN_DATA_URL)
     # YOUR IMPLEMENTATION HERE
-    ...
+    reg = linear_model.LinearRegression()
+    x = np.asanyarray(response[['area']])
+    y = np.asanyarray(response[['price']])
+    reg.fit(x,y)
+    y_hat = reg.predict(area)
+    return y_hat
+    
 
 
 if __name__ == "__main__":
