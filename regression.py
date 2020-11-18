@@ -19,8 +19,8 @@ def predict_price(area) -> float:
     response = requests.get(TRAIN_DATA_URL)
     # YOUR IMPLEMENTATION HERE
     reg = linear_model.LinearRegression()
-    x = numpy.asanyarray(response['area'][:])
-    y = numpy.asanyarray(response['price'][:])
+    x = response[['area']]
+    y = response[['price']]
     reg.fit(x,y)
     y_hat = reg.predict(area)
     return y_hat
